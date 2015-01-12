@@ -6,17 +6,17 @@ const int led = 13;  // WARNING: assumes use of Arduino UNO not Sparfun Pro Micr
 //motor A connected between A01 and A02
 //motor B connected between B01 and B02
 
-const int STBY = 6;  // standby
+const int STBY = 18;  // standby
 
 //Motor A
-const int PWMA = A3;  // Speed control 
-const int AIN1 = 9; // Direction    **** guess A0 = D18
-const int AIN2 = 8; // Direction    **** guess A1 = D19
+const int PWMA = 9;  // Speed control 
+const int AIN1 = 5; // Direction    **** guess A0 = D18
+const int AIN2 = 10; // Direction    **** guess A1 = D19
 
 //Motor B
-const int PWMB = 5;  // Speed control
-const int BIN1 = 7; // Direction
-const int BIN2 = 4;  // Direction                            
+const int PWMB = 6;  // Speed control
+const int BIN1 = 19; // Direction
+const int BIN2 = 20;  // Direction                            
 
 // Legacy definitions 
 // Sensor to Arduino Mega ADK Pin Mapping
