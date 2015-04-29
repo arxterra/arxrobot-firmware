@@ -87,12 +87,12 @@ const int BIN2 = 20;  // Direction
 #define  EMERGENCY_ID       0x0B
 
 #define  COMMAND_ECHO_ID    0x0D
-#define  EXCEPTION_ID       0x0E           // arduino error code exception
+#define  EXCEPTION_ID       0x0E           // arduino error code exception (see subtable below)
 #define  PONG_ID            0x11
 #define  ROUTE_STATUS_ID    0x12
 #define  WAYPOINT_ARRIVE_ID 0x13
 
- /********************** Exception Codes ********************
+ /********************** 0x0E Exception Codes ****************
  *   01    Start byte 0xA5 expected
  *   02    Packet length out of range 1 - 20
  *   03    LRC checksum error

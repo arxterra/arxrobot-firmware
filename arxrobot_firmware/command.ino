@@ -56,6 +56,18 @@ void commandDecoder()
      data[i] = Serial.read();
   #endif
   
+  int byte_count = 0;
+  static int next_time = millis();
+  const int time_interval = 100;  // 0.1 seconds
+  if(i>0){
+    byte_count += i;
+  }
+  
+  if(next_time > millis()){
+    next_time = millis() + time_interval;
+    byte_count = 0;
+  }
+  
     //FSM implementation
     // Moore output decoder section
     checksum ^= data[i];      // includes even parity byte
@@ -239,7 +251,7 @@ void commandHandler(uint8_t * data, uint8_t N)
         */
         
         #if Rosco == TRUE
-          // Adafruit L293D motorshiled
+          // Adafruit L293D motorshield
           move_L293D(data);
         #elif Pathfinder
           // Pololu VNH5019 motorshield (Pathfinder)
