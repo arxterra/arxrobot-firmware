@@ -12,11 +12,20 @@
  ***************************************************/
 #include "pinouts_robot.h"    // replace with your pinout
 
+<<<<<<< HEAD
 #define Rosco TRUE
 #define PaperBot FALSE
 #define bluetooth TRUE       // Leonardo class rovers - Serial used for USB, Serial1 for bluetooth (i.e., USART)
 #define pinger FALSE          // FALSE if no ultrasonic sensor is used.
+=======
+#define Rosco FALSE
+#define PaperBot TRUE
+#define bluetooth FALSE      // Leonardo class rovers - Serial used for USB, Serial1 for bluetooth (i.e., USART)
+                             //    Set bluetooth to TRUE when using CoolTerm
+#define pinger FALSE         // FALSE if no ultrasonic sensor is used.
+>>>>>>> master
 #define debug  TRUE
+#define watchdog FALSE       // turn on/off watchdog timer
 
 // note: #define is a text substitution pre-processor directive
  
@@ -51,10 +60,14 @@ void setup(){
   // If included in design, turn off collisionDetection
   #if PaperBot
     setup_TB6612FNG();    // sparkfun_TB6612FNG
+<<<<<<< HEAD
   #elif Rosco
     setup_PCA9685();      // adafruit_PCA9685
   #endif
   
+=======
+  #endif
+>>>>>>> master
 }
 
 void loop(){
@@ -65,25 +78,26 @@ void loop(){
   if(Serial.available() ) commandDecoder();
   #endif
   
-  // future: replace with watchdog timer interrupt  ****
-  
-  if (millis() > getNextPing()){   
-    sendWordPacket(EMERGENCY_ID,WATCHDOG_TIMEOUT);
-    
-    #if bluetooth                                // if packet sent over USART=>bluetooth,  
-      Serial.print("Emergency exception 0x0");   // send duplicate data as text to
-      Serial.println(WATCHDOG_TIMEOUT,HEX);      // USB=>Arduino IDE Serial Monitor.
-    #endif 
-    
-    // ****** SLEEP PAPERBOT *******
-    
-    // ##### JEFF CHANGED
-    // Until the above-mentioned "SLEEP PAPERBOT" is implemented,
-    // let's reset to allow another ping interval to avoid the
-    // constant barrage of an exception message on every loop.
-    updateNextPing();
-    // #####
-  }
+  #if watchdog == TRUE
+    // future: replace with watchdog timer interrupt  **** 
+    if (millis() > getNextPing()){   
+      sendWordPacket(EMERGENCY_ID,WATCHDOG_TIMEOUT);
+      
+      #if debug && bluetooth                       // if packet sent over USART=>bluetooth,  
+        Serial.print("Emergency exception 0x0");   // send duplicate data as text to
+        Serial.println(WATCHDOG_TIMEOUT,HEX);      // USB=>Arduino IDE Serial Monitor.
+      #endif 
+      
+      // ****** SLEEP PAPERBOT *******
+      
+      // ##### JEFF CHANGED
+      // Until the above-mentioned "SLEEP PAPERBOT" is implemented,
+      // let's reset to allow another ping interval to avoid the
+      // constant barrage of an exception message on every loop.
+      updateNextPing();
+      // #####
+    }
+  #endif
   
   
   sendData(); // Call to send Data for Control Panel Feedback
