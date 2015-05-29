@@ -12,11 +12,18 @@
  ***************************************************/
 #include "pinouts_robot.h"    // replace with your pinout
 
+<<<<<<< HEAD
 #define Rosco FALSE
 #define PaperBot TRUE
 #define bluetooth FALSE      // Leonardo class rovers - Serial used for USB, Serial1 for bluetooth (i.e., USART)
                              //    Set bluetooth to TRUE when using CoolTerm
 #define pinger FALSE         // FALSE if no ultrasonic sensor is used.
+=======
+#define Rosco TRUE
+#define PaperBot FALSE
+#define bluetooth TRUE       // Leonardo class rovers - Serial used for USB, Serial1 for bluetooth (i.e., USART)
+#define pinger FALSE          // FALSE if no ultrasonic sensor is used.
+>>>>>>> serial-print-debug-only
 #define debug  TRUE
 #define watchdog FALSE       // turn on/off watchdog timer
 
@@ -53,7 +60,14 @@ void setup(){
   // If included in design, turn off collisionDetection
   #if PaperBot
     setup_TB6612FNG();    // sparkfun_TB6612FNG
+<<<<<<< HEAD
   #endif
+=======
+  #elif Rosco
+    setup_PCA9685();      // adafruit_PCA9685
+  #endif
+  
+>>>>>>> serial-print-debug-only
 }
 
 void loop(){
