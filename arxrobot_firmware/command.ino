@@ -251,15 +251,10 @@ void commandHandler(uint8_t * data, uint8_t N)
         */
         
         #if Rosco == TRUE
-<<<<<<< HEAD
-          // Adafruit L293D motorshield
-          move_L293D(data);
-=======
           // Adafruit L293D motorshield v1
           // move_L293D(data);
           // Adafruit PCA9685 motorshield v2
           move_PCA9685(data);
->>>>>>> serial-print-debug-only
         #elif Pathfinder
           // Pololu VNH5019 motorshield (Pathfinder)
           move_VNH5019(data); 
